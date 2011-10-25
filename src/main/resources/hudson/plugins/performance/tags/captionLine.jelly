@@ -9,6 +9,7 @@
     <th>${%Line90} (ms)</th>
     <th>${%Minimun} (ms)</th>
     <th>${%Maximun} (ms)</th>
+    <th>${%Throughput} (kb/s)</th>
     <th>${%Errors} (%)</th>
   </tr>
 </j:jelly>

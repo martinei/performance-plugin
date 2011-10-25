@@ -55,6 +55,7 @@ private long duration;
   public void setUri(String uri) {
     this.uri = uri;
   }
+  
   /**
    * Size in Bytes.
    * @return

@@ -7,5 +7,6 @@
   <td>${it.get90Line()}</td>
   <td>${it.getMin()}</td>
   <td>${it.getMax()}</td>
+  <td>${it.getThroughput()}</td>
   <td>${it.errorPercent()} %</td>
 </j:jelly>

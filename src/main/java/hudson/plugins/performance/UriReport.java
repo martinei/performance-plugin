@@ -125,7 +125,21 @@ public class UriReport extends AbstractReport implements ModelObject,
     }
     return min;
   }
-
+ 
+  /**
+  * Return the Throughput in KBytesBytes / Sec 
+  * @return
+  */
+  public long getThroughput() {
+      long totalSize = 0;
+      long totalDuration = 0;
+      for (HttpSample currentSample : httpSampleList) {
+          totalSize += currentSample.getSize();
+          totalDuration += currentSample.getDuration();
+      }
+      return (1000/1024) * (totalSize / (totalDuration != 0 ? totalDuration : -1));
+  }
+  
   public String getStaplerUri() {
     return staplerUri;
   }
