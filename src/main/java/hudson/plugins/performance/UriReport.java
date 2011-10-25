@@ -130,18 +130,28 @@ public class UriReport extends AbstractReport implements ModelObject,
   * Return the Throughput in KBytesBytes / Sec 
   * @return
   */
-  public double getThroughput() {
+  public String getThroughput() {
       long totalSize = 0;
-      long min = Long.MAX_VALUE;
-      long max = Long.MIN_VALUE;      
+      long startTime = Long.MAX_VALUE;
+      long endTime = Long.MIN_VALUE;
+      
+      // The Timestamp of Each Sample donates the momentan where sampling stopped
+      // we also need the duration of the first Sample to get the complete duration
+      long durationOfFirstSample = 0;
       
       for (HttpSample currentSample : httpSampleList) {
           totalSize += currentSample.getSize();
-          min = Math.min(min, currentSample.getDate().getTime());          
-          max = Math.max(max, currentSample.getDate().getTime());
+          if (startTime  > currentSample.getDate().getTime()) {
+              startTime = currentSample.getDate().getTime();
+              durationOfFirstSample  = currentSample.getDuration();
+          }
+          endTime = Math.max(endTime, currentSample.getDate().getTime());
       }
-      long totalDuration = max - min;
-      return ( (totalSize/ 1024.0) / (totalDuration != 0 ? (totalDuration / 1000.0) : -1));
+      long totalDuration = endTime - startTime + durationOfFirstSample;
+      if (totalDuration == 0) {
+          return "0";
+      }
+      return String.format ("%2.2f", (totalSize/ 1024.0) / (totalDuration / 1000.0) );
   }
   
   public String getStaplerUri() {
