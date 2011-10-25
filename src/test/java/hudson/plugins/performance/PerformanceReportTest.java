@@ -89,6 +89,7 @@ public class PerformanceReportTest {
 		HttpSample firstHttpSample = firstUriReport.getHttpSampleList().get(0);
 		assertEquals(loginUri, firstHttpSample.getUri());
 		assertEquals(14720, firstHttpSample.getDuration());
+        assertEquals(771065, firstHttpSample.getSize());
 		assertEquals(new Date(1296846793179L), firstHttpSample.getDate());
 		assertTrue(firstHttpSample.isSuccessful());
 		String logoutUri = "Workgroup";
@@ -96,7 +97,8 @@ public class PerformanceReportTest {
 		HttpSample secondHttpSample = secondUriReport.getHttpSampleList()
 				.get(0);
 		assertEquals(logoutUri, secondHttpSample.getUri());
-		assertEquals(278, secondHttpSample.getDuration());
+        assertEquals(278, secondHttpSample.getDuration());
+        assertEquals(744705, secondHttpSample.getSize());
 		assertEquals(new Date(1296846847952L), secondHttpSample.getDate());
 		assertTrue(secondHttpSample.isSuccessful());
 	}
