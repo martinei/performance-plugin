@@ -9,13 +9,16 @@ import java.util.Date;
  */
 public class HttpSample implements Comparable<HttpSample> {
 
-  private long duration;
+
+private long duration;
 
   private boolean successful;
 
   private Date date;
 
   private String uri;
+  
+  private long size;
 
   public long getDuration() {
     return duration;
@@ -52,9 +55,18 @@ public class HttpSample implements Comparable<HttpSample> {
   public void setUri(String uri) {
     this.uri = uri;
   }
+  /**
+   * Size in Bytes.
+   * @return
+   */
+  public long getSize() {
+      return size;
+  }
 
+  public void setSize(long size) {
+      this.size = size;
+  }  
   public int compareTo(HttpSample o) {
     return (int) (getDuration() - o.getDuration());
   }
-
 }
