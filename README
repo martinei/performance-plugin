@@ -1,0 +1,2 @@
+This is a fork of hudson/Jenkins Performance Plugin.
+This fork adss a Throughput Column to the JMeter Performance Report. It's done quick and dirty.
