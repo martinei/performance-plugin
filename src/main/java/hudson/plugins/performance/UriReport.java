@@ -124,19 +124,23 @@ public class UriReport extends AbstractReport implements ModelObject,
       min = Math.min(min, currentSample.getDuration());
     }
     return min;
-  }
- 
+   }
+
   /**
   * Return the Throughput in KBytesBytes / Sec 
   * @return
   */
   public double getThroughput() {
       long totalSize = 0;
-      long totalDuration = 0;
+      long min = Long.MAX_VALUE;
+      long max = Long.MIN_VALUE;      
+      
       for (HttpSample currentSample : httpSampleList) {
           totalSize += currentSample.getSize();
-          totalDuration += currentSample.getDuration();
+          min = Math.min(min, currentSample.getDate().getTime());          
+          max = Math.max(max, currentSample.getDate().getTime());
       }
+      long totalDuration = max - min;
       return ( (totalSize/ 1024.0) / (totalDuration != 0 ? (totalDuration / 1000.0) : -1));
   }
   
