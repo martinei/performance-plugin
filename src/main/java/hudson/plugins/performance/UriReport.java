@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * A report about a particular tested URI.
+ * Contains number of samples.
  * 
  * This object belongs under {@link PerformanceReport}.
  */
@@ -130,7 +131,7 @@ public class UriReport extends AbstractReport implements ModelObject,
   * Return the Throughput in KBytesBytes / Sec 
   * @return
   */
-  public String getThroughput() {
+  public double getThroughput() {
       long totalSize = 0;
       long startTime = Long.MAX_VALUE;
       long endTime = Long.MIN_VALUE;
@@ -149,9 +150,13 @@ public class UriReport extends AbstractReport implements ModelObject,
       }
       long totalDuration = endTime - startTime + durationOfFirstSample;
       if (totalDuration == 0) {
-          return "0";
+          return 0;
       }
-      return String.format ("%2.2f", (totalSize/ 1024.0) / (totalDuration / 1000.0) );
+      return (totalSize/ 1024.0) / (totalDuration / 1000.0) ;
+  }
+  
+  public String getThroughputAsString() {
+      return String.format ("%2.2f", getThroughput());
   }
   
   public String getStaplerUri() {

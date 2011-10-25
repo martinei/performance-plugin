@@ -147,6 +147,20 @@ public class PerformanceReport extends AbstractReport implements
     return min;
   }
 
+  
+  public String getThroughputAsString() {
+          double result = 0;
+          int size =size();
+          if (size != 0) {
+            for (UriReport currentReport : uriReportMap.values()) {
+              result += currentReport.getThroughput()*currentReport.size();
+            }
+           result = result / size;
+          }
+          return String.format ("%2.2f", result);
+  }
+  
+  
   public String getReportFileName() {
     return reportFileName;
   }
