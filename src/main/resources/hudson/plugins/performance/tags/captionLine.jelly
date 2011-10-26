@@ -10,6 +10,7 @@
     <th>${%Minimun} (ms)</th>
     <th>${%Maximun} (ms)</th>
     <th>${%Throughput} (kb/s)</th>
+    <th>${%Throughput} (#/s)</th>
     <th>${%Errors} (%)</th>
   </tr>
 </j:jelly>

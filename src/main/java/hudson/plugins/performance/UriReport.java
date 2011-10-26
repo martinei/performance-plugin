@@ -38,6 +38,12 @@ public class UriReport extends AbstractReport implements ModelObject,
 
   private String uri;
 
+  private double throughput = -1;
+
+  private double operationsPerSecond = -1;
+  
+  private long totalDuration = -1;
+
   UriReport(PerformanceReport performanceReport, String staplerUri, String uri) {
     this.performanceReport = performanceReport;
     this.staplerUri = staplerUri;
@@ -132,6 +138,11 @@ public class UriReport extends AbstractReport implements ModelObject,
   * @return
   */
   public double getThroughput() {
+      if (throughput == -1) calculateThroughputs();
+      return throughput;
+  }
+  
+  private void calculateThroughputs() {
       long totalSize = 0;
       long startTime = Long.MAX_VALUE;
       long endTime = Long.MIN_VALUE;
@@ -148,11 +159,23 @@ public class UriReport extends AbstractReport implements ModelObject,
           }
           endTime = Math.max(endTime, currentSample.getDate().getTime());
       }
-      long totalDuration = endTime - startTime + durationOfFirstSample;
+      totalDuration = endTime - startTime + durationOfFirstSample;
       if (totalDuration == 0) {
-          return 0;
+          throughput = 0;
+          operationsPerSecond = 0;
+      } else {
+          throughput =  (totalSize/ 1024.0) / (totalDuration / 1000.0) ;
+          operationsPerSecond =  1000* size() / (double) totalDuration;
       }
-      return (totalSize/ 1024.0) / (totalDuration / 1000.0) ;
+      
+  }
+  public double getOperationsPerSecond() {
+      if (operationsPerSecond == -1) calculateThroughputs();
+      return operationsPerSecond;  
+  }
+  
+  public String getOperationsPerSecondAsString() {
+     return String.format ("%2.2f", getOperationsPerSecond());
   }
   
   public String getThroughputAsString() {

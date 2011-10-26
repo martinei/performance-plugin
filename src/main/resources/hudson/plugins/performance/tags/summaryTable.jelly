@@ -8,5 +8,6 @@
   <td>${it.getMin()}</td>
   <td>${it.getMax()}</td>
   <td>${it.getThroughputAsString()}</td>
+  <td>${it.getOperationsPerSecondAsString()}</td>
   <td>${it.errorPercent()} %</td>
 </j:jelly>
