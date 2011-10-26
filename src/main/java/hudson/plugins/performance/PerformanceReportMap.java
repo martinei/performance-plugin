@@ -1,7 +1,8 @@
 package hudson.plugins.performance;
 
-import hudson.model.AbstractBuild;
 import hudson.model.ModelObject;
+import hudson.model.TaskListener;
+import hudson.model.AbstractBuild;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -17,11 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import hudson.model.TaskListener;
-import org.apache.log4j.Logger;
-
 /**
  * Root object of a performance report.
+ * Maps Filenames to PerformanceReports.
  */
 public class PerformanceReportMap implements ModelObject {
   /**

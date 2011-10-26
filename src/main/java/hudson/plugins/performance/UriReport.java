@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * A report about a particular tested URI.
- * Contains number of samples.
+ * Contains number o HttpSamples.
  * 
  * This object belongs under {@link PerformanceReport}.
  */
@@ -174,13 +174,7 @@ public class UriReport extends AbstractReport implements ModelObject,
       return operationsPerSecond;  
   }
   
-  public String getOperationsPerSecondAsString() {
-     return String.format ("%2.2f", getOperationsPerSecond());
-  }
   
-  public String getThroughputAsString() {
-      return String.format ("%2.2f", getThroughput());
-  }
   
   public String getStaplerUri() {
     return staplerUri;

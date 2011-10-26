@@ -7,7 +7,7 @@
   <td>${it.get90Line()}</td>
   <td>${it.getMin()}</td>
   <td>${it.getMax()}</td>
-  <td>${it.getThroughputAsString()}</td>
-  <td>${it.getOperationsPerSecondAsString()}</td>
-  <td>${it.errorPercent()} %</td>
+  <td>${it.getThroughputFormated()}</td>
+  <td>${it.getOperationsPerSecondFormated()}</td>
+  <td>${it.errorPercentFormated()} %</td>
 </j:jelly>

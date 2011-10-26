@@ -32,7 +32,7 @@ public class PerformanceReport extends AbstractReport implements
    */
   private final Map<String, UriReport> uriReportMap = new LinkedHashMap<String, UriReport>();
 
-  public void addSample(HttpSample pHttpSample) throws SAXException {
+  public void addSample(HttpSample pHttpSample) {
     String uri = pHttpSample.getUri();
     if (uri == null) {
       buildAction.getHudsonConsoleWriter().println(
@@ -148,20 +148,19 @@ public class PerformanceReport extends AbstractReport implements
   }
 
   
-  public String getThroughputAsString() {
-          double result = 0;
-          int size =size();
-          if (size != 0) {
-            for (UriReport currentReport : uriReportMap.values()) {
-              result += currentReport.getThroughput()*currentReport.size();
-            }
-           result = result / size;
-          }
-          return String.format ("%2.2f", result);
+  public double getThroughput() {
+      double result = 0;
+      int size =size();
+      if (size != 0) {
+        for (UriReport currentReport : uriReportMap.values()) {
+          result += currentReport.getThroughput()*currentReport.size();
+        }
+       result = result / size;
+      }
+      return result;
   }
   
-  
-  public String getOperationsPerSecondAsString() {
+  public double getOperationsPerSecond() {
       double result = 0;
       int size =size();
       if (size != 0) {
@@ -170,7 +169,7 @@ public class PerformanceReport extends AbstractReport implements
         }
        result = result / size;
       }
-      return String.format ("%2.2f", result);
+      return result;
   }
   
   public String getReportFileName() {

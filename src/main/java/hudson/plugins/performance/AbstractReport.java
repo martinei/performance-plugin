@@ -55,7 +55,19 @@ public abstract class AbstractReport {
   public String getMaxFormated() {
     return dataFormat.format(getMax());
   }
+  
+  abstract double getOperationsPerSecond();
+  
+  public String getOperationsPerSecondFormated() {
+      return String.format ("%2.2f", getOperationsPerSecond());
+   }
+   
+  abstract double getThroughput();
 
+  public String getThroughputFormated() {
+       return String.format ("%2.2f", getThroughput());
+   }
+ 
   abstract public long getMin();
 
   abstract public int size();
